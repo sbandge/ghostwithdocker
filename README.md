@@ -1,4 +1,7 @@
-###Prerequisites
+# Ghost with MSSql
+Ghost with Ms SQL
+
+### Prerequisites
 •	Ubuntu 18.04 LTS
 •	Root privileges
 
