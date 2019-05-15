@@ -2,8 +2,8 @@
 Ghost with Ms SQL
 
 ### Prerequisites
-•	Ubuntu 18.04 LTS
-•	Root privileges
+1.	Ubuntu 18.04 LTS
+2.	Root privileges
 
 Install Docker Compose
 Use below steps to install docker compose from git hub repository.
