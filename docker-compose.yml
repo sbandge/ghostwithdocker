@@ -1,0 +1,59 @@
+version: '3'
+
+
+volumes:
+  ghost-db:
+  ghost-content:
+
+networks:
+  ghost:
+  proxy:
+
+services:
+  mysql:
+    container_name: mysql
+    image: mysql:5.7
+    restart: always
+    networks:
+      - ghost
+    
+    volumes:
+      - ghost-db:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: dockeruser!123
+      MYSQL_USER: ghost
+      MYSQL_PASSWORD: ghostpass
+      MYSQL_DATABASE: ghost
+
+  ghost:
+    container_name: ghost
+    image: ghost:1-alpine
+    restart: always
+    networks:
+      - ghost
+      - proxy  
+    volumes:
+      - ghost-content:/var/lib/ghost/content
+    environment:
+      database__client: mysql
+      database__connection__host: mysql
+      database__connection__user: ghost
+      database__connection__password: ghostpass
+      database__connection__database: ghost
+    depends_on:
+      - mysql
+
+  nginx:
+    build: ./nginx
+    container_name: nginx    
+    restart: always
+    networks:
+      - proxy
+    depends_on:
+      - ghost
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+       - /etc/selfsign/:/etc/selfsign/
+       - ./nginx_volume:/usr/share/nginx/html
