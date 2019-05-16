@@ -20,7 +20,7 @@ services:
     volumes:
       - ghost-db:/var/lib/mysql
     environment:
-      MYSQL_ROOT_PASSWORD: dockeruser!123
+      MYSQL_ROOT_PASSWORD: rootuserpassword
       MYSQL_USER: ghost
       MYSQL_PASSWORD: ghostpass
       MYSQL_DATABASE: ghost
