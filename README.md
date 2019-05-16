@@ -25,8 +25,9 @@ In this step, we will create docker-compose file for configuration of ghost appl
 3) Copy past containts from above docker-compose.yml file. 
 4) Create directory "nginx" into ghost directory
    #### About Nginx
-      It is open source reverse proxy server for for HTTP, HTTPS, SMTP, POP3, and IMAP protocols, as well as a load balancer, HTTP             cache and a web server (origin server). It helps application for high performence, high accurecy and high conconrrency.
-      For more details about Nginx: wikipedia.org/wiki/Nginx
+      It is open source reverse proxy server for for HTTP, HTTPS, SMTP, POP3, and IMAP protocols, as well as a load balancer, HTTP             cache and a web server (origin server). It helps application for high performence, high accurecy and high conconrrency.      
+      For more details about Nginx: <a href="http://wikipedia.org/wiki/Nginx/">Nginx</a>
+      
    1. Use Nginx custom configuration to redirect application to secure protocol i.e. from HTTP to HTTPS.
    2. Create or download two files i.e. docker and default.conf in it (or download directly from git hub).
    3. default.conf contains cutom configuration and path of self-signed certificate ( below are mentioned steps for creating self-signed       certificate)
@@ -46,7 +47,7 @@ In this step, we will create docker-compose file for configuration of ghost appl
         ###### docker-compose up -d
      2. Check status of containers using below command
         ##### docker ps
- 7) Browse URL using http://<host ip> or http://<<hostname>> 
+ 7) Browse URL using "http://<host ip>" or "http://<hostname>" 
       1. It will redirect to HTTPS protocol.
  
 
