@@ -14,11 +14,40 @@ Ghost with Ms SQL
 #### sudo chmod +x /usr/local/bin/docker-compose
 
 - Once docker- compose has been installed, run below commands to check its version.
-#### docker-compose version
-#### docker version
+    ##### docker-compose version
+    ##### docker version
 
 ## Configure ghost with MySQL
 In this step, we will create docker-compose file for configuration of ghost application as front end and MySql as backend. Also we will create internal ghost network so that ghost application can communicate with MySQL DB.
+
+1) Create ghost directory on ubuntu server.
+2) Create docker-compose.yml file in it or download from git repo
+3) Copy past containts from above docker-compose.yml file. 
+4) Create directory "nginx" into ghost directory
+   -- About Nginx
+      It is open source reverse proxy server for for HTTP, HTTPS, SMTP, POP3, and IMAP protocols, as well as a load balancer, HTTP             cache and a web server (origin server). It helps application for high performence, high accurecy and high conconrrency.
+      For more details about Nginx: wikipedia.org/wiki/Nginx
+   -- Use Nginx custom configuration to redirect application to secure protocol i.e. from HTTP to HTTPS.
+   -- Create or download two files i.e. docker and default.conf in it (or download directly from git hub).
+   -- default.conf contains cutom configuration and path of self-signed certificate ( below are mentioned steps for creating self-signed       certificate)
+   -- docker file help us to build Nginx image using custom configurations.
+   -- Create self-signed certificates
+   -- Create selfsign directory at location "/etc/selfsign/"
+   -- Navigate to selfsign directory and execute below command.
+   ##### openssl req -x509 -nodes -days 365 -newkey rsa:4096 -keyout nginx-selfsigned.key -out nginx-selfsigned.crt
+   -- To generate a DH key and enable dhparam, execute below command 
+   ##### openssl dhparam -out dhparam.pem 2048
+   -- Make sure path of certificate mentioned in default.conf is same as created one as above.
+   -- Also verify certificate path in docker-compose.yml file.
+  5) To access the NGINX container from outside world, Make sure to map host port (80/443) with container port (80/443).
+     -- Also check if your machine does not block these ports(enable them if not).
+  6) Once all above steps completed we are ready for build our containers.
+    -- Execute below command from docker-compose.yml file location.
+     ##### docker-compose up -d
+     -- Check status of containers using below command
+     ##### docker ps
+   7) Browse URL using http://<host ip> or http://<<hostname>> 
+     -- It will redirect to HTTPS protocol.
  
 
 
