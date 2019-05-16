@@ -47,7 +47,7 @@ In this step, we will create docker-compose file for configuration of ghost appl
         ###### docker-compose up -d
      2. Check status of containers using below command
         ##### docker ps
- 7) Browse URL using "http://<host ip>" or "http://<hostname>" 
+ 7) Browse URL using "http://host-ip" or "http://hostname" 
       1. It will redirect to HTTPS protocol.
  
 
